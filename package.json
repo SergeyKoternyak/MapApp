@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Homework with Google maps & ES2015",
   "scripts": {
-    "build": "node ./node_modules/less/bin/lessc ./styles/style.less ./styles/style.css",
+    "build": "node ./node_modules/less/bin/lessc ./styles/style.less ./styles/style.css && node ./node_modules/postcss-cli/bin/postcss --use autoprefixer styles/*.css -d styles",
     "start": "npm run build && node ./node_modules/opener/opener.js http://127.0.0.1:8080 && node ./node_modules/node-static/bin/cli.js"
   },
   "author": "Sergey Koternyak <sergeykoternyak@gmail.com>",
@@ -13,7 +13,9 @@
     "opener": "^1.4.1"
   },
   "devDependencies": {
+    "autoprefixer": "^6.3.6",
     "less": "^2.7.1",
-    "eslint": "^2.11.1"
+    "eslint": "^2.11.1",
+    "postcss-cli": "^2.5.2"
   }
 }
