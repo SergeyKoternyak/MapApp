@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Map App</title>
+	<link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+<!-- Шаблон карты-->
+	<script id="template-map" type="text/template">
+		<div class="container">
+			<div class="new-place">
+				<input type="text" placeholder="Введите название места">
+				<div class="add"></div>
+				<div class="open-list"></div>
+				<div class="helper hide">Укажите нужное место на карте</div>
+			</div>
+			<ul class="place-list hide"></ul>
+			<div class="map"></div>
+		</div>
+	</script>
+<!-- Шаблон новой заметки-->
+	<script id="template-place" type="text/template">
+		<li class="place <%= (inFavorite) ? 'in-favorite' : '' %>">
+			<%= name %>
+			<div class="buttons">
+				<div class="favorite button">Favorite</div>
+				<div class="delete button">Delete</div>
+			</div>
+		</li>
+	</script>
+<!-- Скрипты -->
+	<script src="node_modules/lodash/lodash.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDm5ycFaQX3D8h0JzMDpGRxs0ZPvJqFv3k"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>

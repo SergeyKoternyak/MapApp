@@ -1,0 +1,19 @@
+{
+  "name": "MapApp",
+  "version": "1.0.0",
+  "description": "Homework with Google maps & ES2015",
+  "scripts": {
+    "build": "node ./node_modules/less/bin/lessc ./styles/style.less ./styles/style.css",
+    "start": "npm run build && node ./node_modules/opener/opener.js http://127.0.0.1:8080 && node ./node_modules/node-static/bin/cli.js"
+  },
+  "author": "Sergey Koternyak <sergeykoternyak@gmail.com>",
+  "dependencies": {
+    "node-static": "^0.7.7",
+    "lodash": "^4.13.1",
+    "opener": "^1.4.1"
+  },
+  "devDependencies": {
+    "less": "^2.7.1",
+    "eslint": "^2.11.1"
+  }
+}
