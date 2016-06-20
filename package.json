@@ -8,8 +8,9 @@
   },
   "author": "Sergey Koternyak <sergeykoternyak@gmail.com>",
   "dependencies": {
-    "node-static": "^0.7.7",
+    "font-awesome": "^4.6.3",
     "lodash": "^4.13.1",
+    "node-static": "^0.7.7",
     "opener": "^1.4.1"
   },
   "devDependencies": {

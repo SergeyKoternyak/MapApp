@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Map App</title>
+	<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
@@ -11,8 +12,8 @@
 		<div class="container">
 			<div class="new-place">
 				<input type="text" placeholder="Введите название места">
-				<div class="add"></div>
-				<div class="open-list"></div>
+				<div class="add fa fa-map-marker fa-fw" aria-hidden="true"></div>
+				<div class="open-list fa fa-bars fa-fw" aria-hidden="true"></div>
 				<div class="helper hide">Укажите нужное место на карте</div>
 			</div>
 			<ul class="place-list hide"></ul>
@@ -22,11 +23,13 @@
 <!-- Шаблон новой заметки-->
 	<script id="template-place" type="text/template">
 		<li class="place <%= (inFavorite) ? 'in-favorite' : '' %>">
-			<%= name %>
-			<div class="buttons">
-				<div class="favorite button">Favorite</div>
-				<div class="delete button">Delete</div>
+			<div class="buttons" contenteditable="false">
+				<div class="favorite button fa fa-fw <%= (inFavorite) ? 'fa-star' : 'fa-star-o' %>" title="Избранное"></div>
+				<div class="edit button fa fa-pencil-square-o fa-fw" title="Редактировать"></div>
+				<div class="save button fa fa-floppy-o fa-fw" title="Сохранить"></div>
+				<div class="delete button fa fa-trash-o fa-fw" title="Удалить"></div>
 			</div>
+			<p><%= name %></p>
 		</li>
 	</script>
 <!-- Скрипты -->

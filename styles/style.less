@@ -1,10 +1,14 @@
 @colorGrey: #aaaaab;
-@colorGold: #ffdb6d;
 @colorWhite: #ffffff;
 @colorBlue: #b3d1ff;
+@colorRed: #ff0000;
+@colorOrange: #ffa200;
+@colorGreen: #00b200;
 
 @import url(reset.css);
-
+* {
+	box-sizing: border-box;
+}
 .container {
 	position: relative;
 	overflow: hidden;
@@ -25,12 +29,14 @@
 		display: inline-block;
 		vertical-align: top;
 	}
-	.open-list,
-	.add {
+	.add,
+	.open-list {
 		width: 40px;
-		height: 40px;
 		cursor: pointer;
-		&:before{
+		font-size: 20px;
+		padding: 10px 0;
+		color: @colorGrey;
+		&:after{
 			content: '';
 			position: absolute;
 			top: 8px;
@@ -40,21 +46,16 @@
 			background: @colorGrey;
 		}
 	}
-	.open-list {
-		background: url(imgs/open.png) center no-repeat;
-		&:hover{
-			background-image: url(imgs/open-hover.png);
-		}
+	.add:hover {
+		color: @colorRed;
 	}
-	.add {
-		background: url(imgs/add.png) center no-repeat;
-		&:hover{
-			background-image: url(imgs/add-hover.png);
-		}
+	.open-list:hover {
+		color: @colorBlue;
 	}
+
 	input {
 		font-size: 18px;
-		width: 250px;
+		width: 249px;
 		height: 24px;
 		border: none;
 		padding-left: 10px;
@@ -85,7 +86,7 @@
 	position: absolute;
 	top: 41px;
 	right: 0px;
-	width: 331px;
+	width: 330px;
 	z-index: 2;
 	transition: right .5s linear;
 	box-shadow: -1px 5px 10px 0px rgba(0,0,0,0.75);
@@ -96,53 +97,57 @@
 // Стили заметки
 .place {
 	background: @colorWhite;
-	width: 202px;
+	width: 330px;
 	border-left: 1px solid @colorGrey;
 	border-bottom: 1px solid @colorGrey;
-	padding: 10px 118px 10px 10px;
-	word-wrap: break-word;
 	font-size: 14px;
-	position: relative;
 	cursor: default;
+	p {
+		word-wrap: break-word;
+		padding: 10px;
+	}
 	&:hover {
 		background: linear-gradient(to bottom, @colorWhite, @colorBlue);
 	}
 	.buttons {
-		position: absolute;
-		top: 10px;
-		right: 10px;
 		font-size: 0;
 		user-select: none;
+		float: right;
+		margin: 10px;
 	}
 	.button {
-		text-align: center;
+		width: 30px;
 		cursor: pointer;
-		padding: 0 5px;
-		display: inline-block;
-		vertical-align: top;
 		font-size: 14px;
-	}
-	.delete {
-		&:hover{
-			color: red;
-		}
-	}
-	.favorite {
 		border-left: 1px solid @colorGrey;
-		border-right: 1px solid @colorGrey;
-		&:hover{
-			color: darken(@colorGold, 35%);
-		}
+		color: @colorGrey;
 	}
-}
-// Карта
-.map {
-	min-height: 1px;
+	.favorite:hover{
+		color: @colorOrange;
+	}
+	.edit:hover,
+	.save:hover {
+		color: @colorGreen;
+	}
+	.save {
+		display: none;
+	}
+	.delete:hover{
+		color: @colorRed;
+	}
 }
 // Добавляемые стили
-.in-favorite {
-	background: linear-gradient(to bottom, @colorWhite, @colorGold);
-}
 .hide{
 	right: -340px;
+}
+.edited {
+	.edit {
+		display: none;
+	}
+	.save {
+		display: inline-block;
+	}
+	&:hover {
+		background: linear-gradient(to bottom, @colorWhite, lighten(@colorGreen, 40%));
+	}
 }
