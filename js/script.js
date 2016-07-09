@@ -117,7 +117,10 @@ class MapApp{
 			this.map = new google.maps.Map(this.$mapEl, {
 				center: new google.maps.LatLng(lat, lan),
 				zoom: this.zoom,
-				mapTypeId: this.mapType
+				mapTypeId: this.mapType,
+				mapTypeControlOptions: {
+					position: google.maps.ControlPosition.LEFT_BOTTOM
+				}
 			});
 		};
 		let geoSuccess = position => {
