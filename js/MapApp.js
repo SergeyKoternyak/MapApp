@@ -1,79 +1,8 @@
-/* global google */
-/* global _ */
-document.addEventListener("DOMContentLoaded", () => {
-// Получение элемента по CSS селектору
-let getEl = (selector, scope) => (scope === window) ? document.querySelector(selector) : (scope || document).querySelector(selector);
+import getEl from './getEl.js';
+import Place from './Place.js';
+import PlaceArchive from './PlaceArchive.js';
 
-// Конструктор объекта
-class Place{
-	constructor(name, latitude, longitude, fav = false){
-		this.name = name;
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.inFavorite = fav;
-	}
-}
-
-// Конструктор массива объектов
-class PlaceArchive extends Array{
-	constructor(map, selector, $rootEl, iconFavorite){
-		super();
-		this.map = map;
-		this.selector = (selector === undefined) ? 'myPlaces' : 'myPlaces' + selector;
-		this.$rootEl = $rootEl;
-		this.iconFavorite = iconFavorite ? iconFavorite : 'styles/imgs/marker-favorite.png';
-	}
-	savePlaces(){
-		let savedPlaces = [];
-		this.forEach(item => {
-			savedPlaces.push({
-				name: item.name,
-				latitude: item.latitude,
-				longitude: item.longitude,
-				inFavorite: item.inFavorite
-			});
-		});
-		localStorage.setItem(this.selector, JSON.stringify(savedPlaces));
-	}
-	push(place){
-		super.push(place);
-		this.renderItem(place);
-		this.savePlaces();
-	}
-	inFavorite(num){
-		this[num].inFavorite = !this[num].inFavorite;
-		this[num].marker.setIcon(this[num].inFavorite ? this.iconFavorite : null);
-		this.savePlaces();
-	}
-	removePlace(num){
-		this[num].marker.setMap(null);
-		this.splice(num, 1);
-		this.savePlaces();
-	}
-	renderItem(place){
-		const template = getEl('#template-place').innerHTML;
-		const compiled = _.template(template);
-		const newElement = compiled(place);
-
-		place.marker = new google.maps.Marker({
-			position: new google.maps.LatLng(place.latitude, place.longitude),
-			map: this.map,
-			title: place.name
-		});
-
-		if(place.inFavorite){
-			place.marker.setIcon(this.iconFavorite);
-		}
-		getEl('.place-list', this.$rootEl).insertAdjacentHTML('beforeEnd', newElement);
-	}
-	saveEdit(num, place){
-		this[num].name = place.textContent;
-		this.savePlaces();
-	}
-}
-
-// Конструктор приложения
-class MapApp{
+export default class MapApp{
 	constructor(config = {}){
 		const template = getEl('#template-map').innerHTML;
 		const compiled = _.template(template);
@@ -211,15 +140,3 @@ class MapApp{
 		}
 	}
 }
-
-new MapApp(/*{
-	selector: '',
-	mapType: 'HYBRID', //ROADMAP , SATELLITE, HYBRID, TERRAIN
-	zoom: 9, // 0-18
-	center: {
-		lat: 48.8534100,
-		lan: 2.3488000
-	},
-	iconFavorite: 'imgs/custom-marker.png'
-}*/);
-});

@@ -1,0 +1,1 @@
+export default (selector, scope) => (scope === window) ? document.querySelector(selector) : (scope || document).querySelector(selector);
